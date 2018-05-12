@@ -28,7 +28,12 @@ else if(command==='list')
 }
 else if(command==='remove')
 {
-  notes.remove(argv.title);
+  var test=notes.remove(argv.title);
+  if(test)
+    console.log("The note has been deleted");
+  else {
+    console.log("The note hasn't been deleted");
+  }
 }
 else if(command==='read')
 {

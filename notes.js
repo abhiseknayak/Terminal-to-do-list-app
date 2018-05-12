@@ -62,6 +62,11 @@ var remove=(title)=>{
   var notes=fetch_notes();
   var temp=notes.filter((word)=>word.title!=title);
   save_notes(temp);
+  if(notes.length===temp.length)
+    return false;
+  else {
+    return true;
+  }
 
 }
 
