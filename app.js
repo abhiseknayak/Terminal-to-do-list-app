@@ -1,4 +1,4 @@
-console.log('hello world');
+// console.log('hello world');
 
 const fs=require('fs');
 const _=require('lodash');
@@ -10,7 +10,7 @@ const argv=yargs.argv;
 
 
 var command=argv._[0];
-console.log('yargs :',argv);
+// console.log('yargs :',argv);
 
 if(command==='add')
 {
@@ -24,21 +24,41 @@ if(command==='add')
 }
 else if(command==='list')
 {
-  notes.listall();
+  var temp=notes.listall();
+  if(temp.length!=0)
+  {
+    console.log(`Ther are a total of ${temp.length} notes--->`);
+    temp.forEach((word)=>notes.display(word));
+  }
+  else {
+    console.log("----The notes list is empty----");
+  }
 }
 else if(command==='remove')
 {
+
   var test=notes.remove(argv.title);
   if(test)
+  {
     console.log("The note has been deleted");
-  else {
+  }
+  else
+  {
     console.log("The note hasn't been deleted");
   }
 }
+
 else if(command==='read')
 {
-  notes.read(argv.title);
+  var temp=notes.read(argv.title);
+  if(temp[0])
+    notes.display(temp[0]);
+  else {
+    console.log("note not found");
+  }
+
 }
-else {
+else
+{
   console.log('unknown command');
 }

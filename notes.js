@@ -1,4 +1,4 @@
-console.log('starting temp.js');
+// console.log('starting temp.js');
 const fs=require('fs');
 
 var fetch_notes=()=>
@@ -42,20 +42,17 @@ var addnotes=(title,body)=>{
 };
 
 var listall=()=>{
-  var arr1=fetch_notes();
-  for(var i=0;i<arr1.length;i++)
-  {
-    console.log(`${i+1} title:${arr1[i].title} body:${arr1[i].body}`);
-  }
+  return fetch_notes();
+
 };
 
 var read=(title)=>{
   var temp=fetch_notes();
   temp=temp.filter((word)=>word.title===title);
   if(temp.length===0)
-    console.log("note doesn't exist");
+    return temp;
   else
-    console.log(`the title is ${temp[0].title} body is ${temp[0].body}`);
+    return temp;
 };
 
 var remove=(title)=>{
@@ -70,6 +67,14 @@ var remove=(title)=>{
 
 }
 
+
+var display=(note)=>{
+  debugger;
+  console.log("----");
+  console.log(`Title--->${note.title}`);
+  console.log(`Body--->${note.body}`);
+}
+
 module.exports={
-  addnotes,listall,read,remove
+  addnotes,listall,read,remove,display
 };
